@@ -5,19 +5,6 @@ export async function POST(req) {
   const { category, price, ageCategory, name, brand, images, gender, color } =
     await req.json();
 
-  // Logging the incoming data for debugging purposes
-  console.log("Received data:", {
-    category,
-    price,
-    ageCategory,
-    name,
-    brand,
-    images,
-    gender,
-    color,
-  });
-
-  // Check for missing fields
   if (!category) {
     return new Response(
       JSON.stringify({ Success: false, msg: "Enter the category" })
@@ -50,6 +37,11 @@ export async function POST(req) {
     return new Response(
       JSON.stringify({ Success: false, msg: "Enter the color" })
     );
+  }
+
+  if (typeof price === "string" && price.split) {
+    const priceArray = price.split(",");
+    console.log("Price array:", priceArray);
   }
 
   try {
