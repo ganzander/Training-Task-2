@@ -39,11 +39,6 @@ export async function POST(req) {
     );
   }
 
-  if (typeof price === "string" && price.split) {
-    const priceArray = price.split(",");
-    console.log("Price array:", priceArray);
-  }
-
   try {
     const result = await client.index({
       index: "optical_items",
